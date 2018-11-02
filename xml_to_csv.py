@@ -26,6 +26,6 @@ def xml_to_csv(path):
     return xml_df
 
 annotations_path = sys.argv[1]
-xml_df = xml_to_csv(image_path)
+xml_df = xml_to_csv(annotations_path)
 xml_df.to_csv('labels.csv', index=None)
 print('Successfully converted xml to csv.')
