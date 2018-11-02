@@ -1,6 +1,3 @@
-% cd
-~ / datalab
-
 import tensorflow as tf
 from object_detection.utils import dataset_util
 import xml.etree.ElementTree as ET
