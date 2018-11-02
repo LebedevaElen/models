@@ -1,5 +1,6 @@
 import os
 import glob
+import sys
 import pandas as pd
 import xml.etree.ElementTree as ET
 
@@ -24,12 +25,7 @@ def xml_to_csv(path):
     xml_df = pd.DataFrame(xml_list, columns=column_name)
     return xml_df
 
-
-def main():
-    image_path = os.path.join(os.getcwd(), 'annotations')
-    xml_df = xml_to_csv(image_path)
-    xml_df.to_csv('labels.csv', index=None)
-    print('Successfully converted xml to csv.')
-
-
-main()
+annotations_path = sys.argv[1]
+xml_df = xml_to_csv(image_path)
+xml_df.to_csv('labels.csv', index=None)
+print('Successfully converted xml to csv.')
