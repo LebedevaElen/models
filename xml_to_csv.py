@@ -10,7 +10,7 @@ for set_type in ['train', 'eval']:
     xml_list = []
     with open('{}.txt'.format(set_type)) as f:
         for xml_file in f:
-            xml_file = xml_file.rstrip(\n)
+            xml_file = xml_file.rstrip('\n')
             tree = ET.parse('xmls/{}.xml'.format(xml_file))
             root = tree.getroot()
             for member in root.findall('object'):
