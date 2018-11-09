@@ -8,9 +8,9 @@ path = sys.argv[1]
 os.chdir(path)
 for set_type in ['train', 'eval']:
     xml_list = []
-    with open(f'{set_type}.txt') as f:
+    with open('{}.txt'.format(set_type)) as f:
         for xml_file in f:
-            tree = ET.parse(f'xmls/{xml_file}.xml')
+            tree = ET.parse('xmls/{}.xml'.format(xml_file))
             root = tree.getroot()
             for member in root.findall('object'):
                 value = (root.find('filename').text,
@@ -25,5 +25,5 @@ for set_type in ['train', 'eval']:
                 xml_list.append(value)
     column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
     xml_df = pd.DataFrame(xml_list, columns=column_name)
-    xml_df.to_csv(f'{set_type}_labels.csv', index=None)
+    xml_df.to_csv('{}_labels.csv'.format(set_type), index=None)
     print('Successfully converted xml to csv.')
