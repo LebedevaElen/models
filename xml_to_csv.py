@@ -11,19 +11,20 @@ for set_type in ['train', 'eval']:
     with open('{}.txt'.format(set_type)) as f:
         for xml_file in f:
             xml_file = xml_file.rstrip('\n')
-            tree = ET.parse('xmls/{}.xml'.format(xml_file))
-            root = tree.getroot()
-            for member in root.findall('object'):
-                value = (root.find('filename').text,
-                         int(root.find('size')[0].text),
-                         int(root.find('size')[1].text),
-                         member[0].text,
-                         int(member[4][0].text),
-                         int(member[4][1].text),
-                         int(member[4][2].text),
-                         int(member[4][3].text)
-                         )
-                xml_list.append(value)
+            if os.path.exists('xmls/{}.xml'.format(xml_file)):
+                tree = ET.parse('xmls/{}.xml'.format(xml_file))
+                root = tree.getroot()
+                for member in root.findall('object'):
+                    value = (root.find('filename').text,
+                             int(root.find('size')[0].text),
+                             int(root.find('size')[1].text),
+                             member[0].text,
+                             int(member[4][0].text),
+                             int(member[4][1].text),
+                             int(member[4][2].text),
+                             int(member[4][3].text)
+                             )
+                    xml_list.append(value)
     column_name = ['filename', 'width', 'height', 'class', 'xmin', 'ymin', 'xmax', 'ymax']
     xml_df = pd.DataFrame(xml_list, columns=column_name)
     xml_df.to_csv('{}_labels.csv'.format(set_type), index=None)
