@@ -31,6 +31,8 @@ def class_text_to_int(row_label):
         return 1
     elif row_label == 'asurg':
         return 2
+    elif row_label == 'asurg_box':
+        return 3
     else:
         None
 
