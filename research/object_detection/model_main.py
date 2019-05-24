@@ -103,7 +103,7 @@ def main(unused_argv):
         eval_on_train_data=False)
 
     # Currently only a single Eval Spec is allowed.
-    tf.estimator.train(estimator, train_spec)
+    tf.estimator.train_and_evaluate(estimator, train_spec, eval_specs[0])
 
 
 if __name__ == '__main__':
